@@ -1,6 +1,10 @@
 # 03 JavaScript: Password Generator
 
 This is a simple password generator that allows users to quickly generate a password between 8 and 128 characters, with the options for including alphanumeric, upper and lower case, numbers and special characters.
+
+* [GitHub Repository]()
+* [Deployed GitHub Page]()
+* [Screenshot](./assets/images/Password-Generator.PNG)
 ## Your Task
 
 This week’s homework requires you to modify starter code to create an application that enables employees to generate random passwords based on criteria that they’ve selected. This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean and polished, responsive user interface that adapts to multiple screen sizes.
