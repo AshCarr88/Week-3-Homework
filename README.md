@@ -3,7 +3,7 @@
 This is a simple password generator that allows users to quickly generate a password between 8 and 128 characters, with the options for including alphanumeric, upper and lower case, numbers and special characters.
 
 * [GitHub Repository](https://github.com/AshCarr88/Week-3-Homework.git)
-* [Deployed GitHub Page]()
+* [Deployed GitHub Page](https://ashcarr88.github.io/Week-3-Homework/)
 * ![Password Generator](./assets/images/Password-Generator.jpg)
 ## Your Task
 
