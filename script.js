@@ -1,203 +1,95 @@
+
+//To create a password generator with safety standards
+//Make sure password is more than 8 but no more then 128 characters
+//Prompt to make sure the special characters are allowed in the generator
+//Generate a random password with given structure 
+
+
+
+
 // Assignment Code
-const generateBtn = document.querySelector("#generate");
+document.querySelector("#generate").addEventListener("click", writePassword);
 
-const randomLowercase = () => {
-  const lowercase = [
-    "a",
-    "b",
-    "c",
-    "d",
-    "e",
-    "f",
-    "g",
-    "h",
-    "i",
-    "j",
-    "k",
-    "l",
-    "m",
-    "n",
-    "o",
-    "p",
-    "q",
-    "r",
-    "s",
-    "t",
-    "u",
-    "v",
-    "w",
-    "x",
-    "y",
-    "z",
-  ];
-  return lowercase[Math.floor(Math.random() * lowercase.length)];
-};
+//Character Arrays//
+var number = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+var specialChar = ["!", "%", "&", ",", "*", "+", "-", ".", "/", "<", ">", "?","~"]
+var alphaLower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+var alphaUpper = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 
-const randomUppercase = () => {
-  const uppercase = [
-    "A",
-    "B",
-    "C",
-    "D",
-    "E",
-    "F",
-    "G",
-    "H",
-    "I",
-    "J",
-    "K",
-    "L",
-    "M",
-    "N",
-    "O",
-    "P",
-    "Q",
-    "R",
-    "S",
-    "T",
-    "U",
-    "V",
-    "W",
-    "X",
-    "Y",
-    "Z",
-  ];
-  return uppercase[Math.floor(Math.random() * uppercase.length)];
-};
 
-const randomNumber = () => {
-  const num = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-  return num[Math.floor(Math.random() * num.length)];
-};
+//Variable Declaration
+var confirmLength = "";
+var confirmSpecialCharacter;
+var confirmNumericCharacter;
+var confirmUpperCase;
+var confirmLowerCase; 
 
-const randomSpecial = () => {
-  const symbol = [
-    "!",
-    "@",
-    "#",
-    "$",
-    "^",
-    "%",
-    "&",
-    "*",
-    "(",
-    ")",
-    "{",
-    "}",
-    "[",
-    "]",
-    "=",
-    "<",
-    ">",
-    "/",
-    "?",
-    ",",
-    ".",
-  ];
+//Prompts to confirm characters
+function generatePassword() {
+  var confirmLength = (prompt("How manny characters would you like your password to be?"));
 
-  return symbol[Math.floor(Math.random() * symbol.length)];
-};
-
-const getPasswordLength = () => {
-  const passwordLengthString = prompt(
-    "What is the length of the password? (should be greater than or equal to 8 and less than or equal to 128)"
-  );
-
-  return parseInt(passwordLengthString, 10);
-};
-
-const validatePasswordLength = (passwordLength) => {
-  // check if number
-  if (Number.isNaN(passwordLength)) {
-    alert("Password length should be a number");
-    return false;
-  } else {
-    if (passwordLength >= 8 && passwordLength <= 128) {
-      return true;
-    } else {
-      alert(
-        "Password length should be greater than or equal to 8 and less than or equal to 128"
-      );
-      return false;
-    }
+ 
+// Loop answer to fit criteria
+  while(confirmLength <= 8 || confirmLength >= 128){
+      alert("Password must be between 8-128 characters. Try Again");
+      var confirmLength = (prompt("How manny characters would you like your password to be?"));
   }
-};
 
-const choicesToAsk = [
-  {
-    key: "isLowercase",
-    question: "Do you want to include lowercase characters?",
-    execute: randomLowercase,
-  },
-  {
-    key: "isUppercase",
-    question: "Do you want to include uppercase characters?",
-    execute: randomUppercase,
-  },
-  {
-    key: "isNumber",
-    question: "Do you want to include number characters?",
-    execute: randomNumber,
-  },
-  {
-    key: "isSpecial",
-    question: "Do you want to include special characters?",
-    execute: randomSpecial,
-  },
-];
+  alert(`Your password will have ${confirmLength} characters`);
 
-const getChoices = () => {
-  const choices = {};
-  const askUser = (choiceObject) => {
-    const confirmedChoice = confirm(choiceObject.question);
-    choices[choiceObject.key] = confirmedChoice;
-  };
+  //Confirm Password Parameters
+  var confirmSpecialCharacter = confirm("Would you like to include special characters?");
+  var confirmNumericCharacter = confirm("Would you like to include numeric characters?");
+  var confirmUpperCase = confirm("Would you like to include uppercase characters?");
+  var confirmLowerCase = confirm("Would you like to include lowercase characters?");
 
-  choicesToAsk.forEach(askUser);
 
-  return choices;
-};
+// Loop answer to fit criteria
+while(confirmSpecialCharacter === false && confirmNumericCharacter === false && confirmUpperCase === false && confirmLowerCase === false){
 
-const validateChoices = (choices) => {
-  const choicesArray = Object.entries(choices);
 
-  const checkIfFalse = (choice) => {
-    return !choice[1];
-  };
+}
 
-  return !choicesArray.every(checkIfFalse);
-};
 
-const generatePassword = () => {
-  // ask the user for the password length
-  const passwordLength = getPasswordLength();
+//Assign action to the password parameters
+var passwordCharacters = []
 
-  // validate the password length
-  const isValidPasswordLength = validatePasswordLength(passwordLength);
+if (confirmSpecialCharacter) {
+  passwordCharacters = passwordCharacters.concat(specialChar)
+}
+if (confirmNumericCharacter) {
+  passwordCharacters = passwordCharacters.concat(number)
+}
+if (confirmUpperCase) {
+  passwordCharacters = passwordCharacters.concat(alphaUpper)
+}
+if (confirmLowerCase) {
+  passwordCharacters = passwordCharacters.concat(alphaLower)
+}
 
-  if (isValidPasswordLength) {
-    // get all 4 choices using confirm
-    const choices = getChoices();
+console.log(passwordCharacters)
 
-    // validate if at least one choice is true
-    const isValidChoices = validateChoices(choices);
+//Loop selecting random items from arrays
 
-    if (isValidChoices) {
-      //
-    } else {
-      alert("Please select at least one choice");
-    }
+var randomPassword = ""
 
-    // console.log(choices);
+for (var i = 0; i < confirmLength; i++) {
+    randomPassword = randomPassword + passwordCharacters[Math.floor(Math.random() * passwordCharacters.length)];
+    console.log(randomPassword)
   }
-};
+  return randomPassword;
+}
+
+
+
 
 // Write password to the #password input
-const writePassword = () => {
-  const password = generatePassword();
-  const passwordText = document.querySelector("#password");
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-};
 
-generateBtn.addEventListener("click", writePassword);
+}
+
+
